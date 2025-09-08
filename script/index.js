@@ -1,3 +1,20 @@
+//creating dynamic for synonym
+const createElements = (arr) => {
+    const htmlElement = arr.map((el) => `<span class="btn">${el}</span>`);
+    return htmlElement.join(" ");
+}
+
+//for loading option
+const manageSpinner = (status) => {
+    if (status == true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("word-container").classList.add("hidden");
+    } else {
+        document.getElementById("word-container").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden");
+    }
+}
+
 const loadLessons = () => {
     const url = 'https://openapi.programming-hero.com/api/levels/all';
     fetch(url) //promise of response
@@ -15,6 +32,7 @@ const removeActive = () => {
 
 const loadLevelWord = (id) => {
     // console.log(id);
+    manageSpinner(true);//when starts loading data,value is true
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
         .then(res => res.json())
@@ -53,9 +71,7 @@ const displayWordDetails = (word) => {
                 </div>
                 <div class="">
                     <h2 class="font-bold">Synonym</h2>
-                    <span class="btn">Syn1</span>
-                    <span class="btn">Syn1</span>
-                    <span class="btn">Syn1</span>
+                    <div class="">${createElements(word.synonyms)}</div>
                 </div>
     
     `;
@@ -76,6 +92,7 @@ const displayLevelWord = (words) => {
             <h2 class="font-bold text-4xl">নেক্সট Lesson এ যান</h2>
         </div>
         `;
+        manageSpinner(false);//for lesson 4&7;
         return;
     }
     //2.
@@ -97,6 +114,7 @@ const displayLevelWord = (words) => {
         //4.
         wordContainer.append(card);
     });
+    manageSpinner(false);//as soon as finishes showing data,value become false
 };
 //for loadLessons
 const displayLessons = (lessons) => {
