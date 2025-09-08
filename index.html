@@ -100,7 +100,20 @@
         <!-- level(lesson) container -->
         <div id="level-container" class="flex gap-5 justify-center flex-wrap"></div>
     </section>
-<!-- to show loading when data is loading -->
+
+    <!-- to add search option -->
+    <section class="flex justify-center my-7">
+        <div class="join">
+            <div>
+                <label class="input validator join-item">
+                    <input id="input-search" type="text" placeholder="Search Vocabulary" required />
+                </label>
+            </div>
+            <button id="btn-search" class="btn btn-primary join-item">Search</button>
+        </div>
+    </section>
+
+    <!-- to show loading when data is loading -->
     <section id="spinner" class="flex justify-center items-center py-10 hidden">
         <span class="loading loading-bars loading-xl"></span>
     </section>
